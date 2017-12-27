@@ -3,9 +3,10 @@ var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
   title: String,
-  createdTime: String,
   content: String,
-  view: Number
+  timestamp: String,
+  sort: String,
+  pv: Number
 });
 
 var Article = mongoose.model('Article', ArticleSchema);
