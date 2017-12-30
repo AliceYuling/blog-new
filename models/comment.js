@@ -14,3 +14,11 @@ exports.deleteComment = function (comment) {
           .remove(query)
           .exec();
 };
+
+exports.getCommentsCount = function (articleId) {
+  let query = {};
+  query.articleId = articleId;
+  return CommentModel
+          .count(query)
+          .exec();
+};

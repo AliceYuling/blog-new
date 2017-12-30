@@ -7,17 +7,14 @@ var path = require('path');
 var mongoStore = require('connect-mongo')(session);
 var mongoose = require('mongoose');
 var routes = require('./routers/index');
+require('./schemas/article');
 var app = express();
 
 var conn = mongoose.connect(config.mongodb, {
   useMongoClient: true
 });
 
-/*
-app.get('/', function (req, res) {
-  res.send('welcome');
-});
-*/
+routes(app);
 //静态文件托管
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
@@ -40,5 +37,5 @@ app.use(session({
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 
-routes(app);
+
 app.listen(config.port);

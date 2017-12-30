@@ -35,7 +35,7 @@ exports.createArticle = function (req, res) {
   article.title = req.fields.title;
   article.content = req.fields.content;
   article.sort = req.field.sort;
-  ArticleModel.create(article, function (err, doc) {
+  return ArticleModel.create(article, function (err, doc) {
     if (err) {
       console.log(err);
     } else {
@@ -61,7 +61,7 @@ exports.editArticle = function (req, res) {
   article.sort = req.field.sort;
   query.articleId = id;
   ArticleModel.update(query, {$set: {
-    title: article.title;
+    title: article.title,
     content: article.content,
     sort: article.sort
   }}).exec();

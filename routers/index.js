@@ -3,4 +3,5 @@ module.exports = function (app) {
   	res.send('welcome');
   });
   app.use('/article', require('./article'));
+  app.use('/admin', require('./admin'));
 };
