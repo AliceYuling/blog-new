@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ArticleModel = require('../models/article');
+
 router.get('/', function (req, res, next) {
   ArticleModel.getArticles(req, res).then(function (articles) {
     return res.render('admin', {

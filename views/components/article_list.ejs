@@ -1,0 +1,13 @@
+<div class="list-wrapper">
+  <% if (articles.length > 0) { %>
+    <ul class="list">
+      <% articles.forEach(function(article) { %>
+        <li class="item">
+          <span>
+            <a href="/admin/article/<%= article._id %>"><%= article.title %></a>
+          </span>
+        </li>
+      <% }) %>
+    </ul>
+  <% }%>
+</div>

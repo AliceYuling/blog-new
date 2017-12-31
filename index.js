@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var config = require('config-lite')(__dirname);
@@ -14,11 +15,13 @@ var conn = mongoose.connect(config.mongodb, {
   useMongoClient: true
 });
 
+app.use(bodyParser());
 routes(app);
 //静态文件托管
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
 app.use(cookieParser);
+
 //session中间件设置
 app.use(session({
   secret: config.session.secret,
@@ -31,7 +34,7 @@ app.use(session({
     url: 'mongodb://localhost:27017/' + config.db,
     collection: 'session'
   })
-}))
+}));
 
 //模板引擎设置
 app.set('views', path.join(__dirname, '/views'));

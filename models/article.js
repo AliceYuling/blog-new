@@ -7,9 +7,9 @@ exports.getArticles = function (req, res) {
               .find()
               .exec(function (err,results) {
                 if (!results) {
-                  res.json(404, {msg: 'No Article'});
+                  console.log('No Article');
                 } else {
-                  res.json(results);
+                  console.log(results);
                 }
               });
 };
@@ -32,16 +32,16 @@ exports.getArticlebySort = function (req, res) {
 
 exports.createArticle = function (req, res) {
   let article = {};
-  article.title = req.fields.title;
-  article.content = req.fields.content;
-  article.sort = req.field.sort;
+  article.title = req.body.title;
+  article.content = req.body.content;
+  article.sort = req.body.sort;
   return ArticleModel.create(article, function (err, doc) {
     if (err) {
       console.log(err);
     } else {
       console.log(doc);
     }
-  }).exec();
+  });
 };
 
 exports.getRawArticle = function (req, res, articleId) {
